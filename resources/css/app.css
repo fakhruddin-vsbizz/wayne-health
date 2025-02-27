@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.product-image {
+    flex: 1;
+    /* max-width: 65%; Larger size for the main product image */
+    text-align: center;
+}
+
+.main-image img {
+    max-width: 90%; /* Big main image */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.zoom-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    max-width: 310px;
+    margin: auto;
+    cursor: crosshair;
+}
+
+.zoom-image {
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zoom-image:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.embroidery-form-section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+}
+
+.embroidery-form-section-width-full {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.active {
+    color: #f8cc1b;
+}
+
+.contact-input:focus {
+    border-bottom-width: 1px;
+    border-color: #f8cc1b;
+}
+
+.forced-max-width {
+    max-width: 70% !important;
+    width: 70%;
+}
+
+.print-scale {
+    transform: scale(0.8);
+    transform-origin: top left;
+}
