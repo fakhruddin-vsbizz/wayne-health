@@ -30,6 +30,9 @@ class OrderConfirmationMail extends Mailable
     {
         return new Envelope(
             subject: 'Order Confirmation Mail',
+            replyTo: [
+                'tasneem@alyko.com',
+            ],
         );
     }
 

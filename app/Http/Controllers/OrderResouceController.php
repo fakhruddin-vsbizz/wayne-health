@@ -183,7 +183,7 @@ class OrderResouceController extends Controller implements HasMiddleware
         $to = Carbon::parse($validated['toDate'])->endOfDay();
 
 
-        $orders = Order::with('customer')->whereBetween('created_at', [$from, $to])->latest()->take(10)->get();
+        $orders = Order::with('customer')->whereBetween('created_at', [$from, $to])->latest()->get();
 
         return $orders;
     }

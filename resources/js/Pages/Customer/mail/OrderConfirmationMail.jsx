@@ -73,7 +73,11 @@ const OrderConfirmationMail = ({
         </button>
     </div> */}
 
-            <section>
+            <section
+                style={{
+                    scale: 0.69,
+                }}
+            >
                 <h1 style={{ fontSize: "1.5rem", color: "#f87171" }}>
                     www.upgmarket.com Order.
                 </h1>
@@ -118,17 +122,27 @@ const OrderConfirmationMail = ({
                                 padding: "0.25rem 1rem",
                             }}
                         >
-                            <span>{orderDetails.billing_ship_to_name}</span>
-                            <span>{orderDetails.billing_ship_to_company}</span>
-                            <span>{orderDetails.billing_address_line_1}</span>
-                            <span>{orderDetails.billing_address_line_2}</span>
-                            <span>
+                            <p className="mb-1">
+                                {orderDetails.billing_ship_to_name}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.billing_ship_to_company}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.billing_address_line_1}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.billing_address_line_2}
+                            </p>
+                            <p className="mb-1">
                                 {orderDetails.billing_postal_code}{" "}
                                 {orderDetails.billing_city}
-                            </span>
-                            <span>{orderDetails.billing_country}</span>
-                            <span>{customer.phone}</span>
-                            <span>{customer.email}</span>
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.billing_country}
+                            </p>
+                            <p className="mb-1">{customer.phone}</p>
+                            <p>{customer.email}</p>
                         </div>
                     </div>
                     <div
@@ -156,16 +170,24 @@ const OrderConfirmationMail = ({
                                 padding: "0.25rem 1rem",
                             }}
                         >
-                            <span>Ground Service</span>
-                            <span>{orderDetails.shipping_ship_to_name}</span>
-                            <span>{orderDetails.shipping_ship_to_company}</span>
-                            <span>{orderDetails.shipping_address_line_1}</span>
-                            <span>{orderDetails.shipping_address_line_2}</span>
-                            <span>
+                            <p className="mb-1">Ground Service</p>
+                            <p className="mb-1">
+                                {orderDetails.shipping_ship_to_name}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.shipping_ship_to_company}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.shipping_address_line_1}
+                            </p>
+                            <p className="mb-1">
+                                {orderDetails.shipping_address_line_2}
+                            </p>
+                            <p className="mb-1">
                                 {orderDetails.shipping_postal_code}{" "}
                                 {orderDetails.shipping_city}
-                            </span>
-                            <span>{orderDetails.shipping_country}</span>
+                            </p>
+                            <p>{orderDetails.shipping_country}</p>
                         </div>
                     </div>
                     <div
@@ -193,23 +215,25 @@ const OrderConfirmationMail = ({
                                 padding: "0.25rem 1rem",
                             }}
                         >
-                            <span>Payment Summary:</span>
+                            <p>Payment Summary:</p>
                             <div>
                                 <div>
-                                    <span>Subtotal: </span>
-                                    <span>${total}.00</span>
+                                    <p className="mb-1">Subtotal: </p>
+                                    <p>${Number(total).toFixed(2)}</p>
                                 </div>
                                 <div>
-                                    <span>Shipping(Ground Service):</span>
-                                    <span>$0.00</span>
+                                    <p className="mb-1">
+                                        Shipping(Ground Service):
+                                    </p>
+                                    <p>$0.00</p>
                                 </div>
                                 <div>
-                                    <span>Tax:</span>
-                                    <span>$0.00</span>
+                                    <p className="mb-1">Tax:</p>
+                                    <p>$0.00</p>
                                 </div>
                                 <div>
-                                    <span>Order Total:</span>
-                                    <span>${total}.00</span>
+                                    <p className="mb-1">Order Total:</p>
+                                    <p>${Number(total).toFixed(2)}</p>
                                 </div>
                             </div>
                         </div>
@@ -239,8 +263,8 @@ const OrderConfirmationMail = ({
                                 padding: "0.25rem 1rem",
                             }}
                         >
-                            <h3>Cost Center:</h3>
-                            <span>{orderDetails.cost_center}</span>
+                            <h3 className="mb-1">Cost Center:</h3>
+                            <p>{orderDetails.cost_center}</p>
                         </div>
                     </div>
                 </div>
@@ -291,30 +315,26 @@ const OrderConfirmationMail = ({
                                                 gap: "0.5rem",
                                             }}
                                         >
-                                            <span>{row.name}</span>
-                                            <span>
+                                            <p>{row.name}</p>
+                                            <p>
                                                 Manufacturer: {row.manufacturer}
-                                            </span>
+                                            </p>
                                             {row?.product?.colors ? (
-                                                <span>
+                                                <p>
                                                     Color: {row.product.colors}
-                                                </span>
+                                                </p>
                                             ) : null}{" "}
                                             {row?.inseam && (
-                                                <span>
-                                                    Inseam: {row.inseam}
-                                                </span>
+                                                <p>Inseam: {row.inseam}</p>
                                             )}
-                                            {row?.fit && (
-                                                <span>Fit: {row.fit}</span>
-                                            )}
+                                            {row?.fit && <p>Fit: {row.fit}</p>}
                                             {row?.size && (
-                                                <span>Size: {row.size}</span>
+                                                <p>Size: {row.size}</p>
                                             )}
                                             {row?.productLength && (
-                                                <span>
+                                                <p>
                                                     Length: {row.productLength}
-                                                </span>
+                                                </p>
                                             )}
                                         </div>
                                     </td>
@@ -380,7 +400,7 @@ const OrderConfirmationMail = ({
                                         >
                                             {row.product
                                                 ?.wayne_logo_position ? (
-                                                <span>
+                                                <p>
                                                     Wayne Health Logo $
                                                     {
                                                         row.product
@@ -390,60 +410,60 @@ const OrderConfirmationMail = ({
                                                     {row?.wayne_logo === "yes"
                                                         ? row?.wayne_logo
                                                         : "no"}
-                                                </span>
+                                                </p>
                                             ) : null}
                                             {row.product
                                                 ?.co_brand_logo_position ? (
                                                 row?.co_brand_logo ? (
-                                                    <span>
+                                                    <p>
                                                         Co-brand Logo $
                                                         {
                                                             row.embroidery_logo_cost
                                                         }
                                                         : {row?.co_brand_logo}
-                                                    </span>
+                                                    </p>
                                                 ) : null
                                             ) : null}
                                             {row.product
                                                 ?.official_logo_position ? (
                                                 row?.official_logo ? (
-                                                    <span>
+                                                    <p>
                                                         Official Logo $
                                                         {
                                                             row.embroidery_logo_cost
                                                         }
                                                         :
-                                                    </span>
+                                                    </p>
                                                 ) : null
                                             ) : null}
                                             {row.product?.embroidery_lines ===
                                             "line1" ? (
                                                 row?.line1 ? (
-                                                    <span>
+                                                    <p>
                                                         Line 1 $
                                                         {
                                                             row.embroidery_lines_cost
                                                         }
                                                         : {row?.line1}
-                                                    </span>
+                                                    </p>
                                                 ) : null
                                             ) : null}
                                             {row.product?.embroidery_lines ===
                                             "line2" ? (
                                                 <>
                                                     {row?.line1 ? (
-                                                        <span>
+                                                        <p>
                                                             Line 1 $
                                                             {
                                                                 row.embroidery_lines_cost
                                                             }
                                                             : {row?.line1}
-                                                        </span>
+                                                        </p>
                                                     ) : null}
                                                     {row?.line2 ? (
-                                                        <span>
+                                                        <p>
                                                             Line 2: {row?.line2}
-                                                        </span>
+                                                        </p>
                                                     ) : null}
                                                 </>
                                             ) : null}
@@ -451,23 +471,23 @@ const OrderConfirmationMail = ({
                                             "line3" ? (
                                                 <>
                                                     {row?.line1 ? (
-                                                        <span>
+                                                        <p>
                                                             Line 1 $
                                                             {
                                                                 row.embroidery_lines_cost
                                                             }
                                                             : {row?.line1}
-                                                        </span>
+                                                        </p>
                                                     ) : null}
                                                     {row?.line2 ? (
-                                                        <span>
+                                                        <p>
                                                             Line 2: {row?.line2}
-                                                        </span>
+                                                        </p>
                                                     ) : null}
                                                     {row?.line3 ? (
-                                                        <span>
+                                                        <p>
                                                             Line 3: {row?.line3}
-                                                        </span>
+                                                        </p>
                                                     ) : null}
                                                 </>
                                             ) : null}
@@ -499,7 +519,7 @@ const OrderConfirmationMail = ({
                             }}
                         >
                             <span>Subtotal: </span>
-                            <span>${total}.00</span>
+                            <span>${Number(total).toFixed(2)}</span>
                         </div>
                         <div
                             style={{
@@ -529,7 +549,7 @@ const OrderConfirmationMail = ({
                             }}
                         >
                             <span>Order Total:</span>
-                            <span>${total}.00</span>
+                            <span>${Number(total).toFixed(2)}</span>
                         </div>
                     </div>
                 </div>

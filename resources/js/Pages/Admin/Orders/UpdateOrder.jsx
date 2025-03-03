@@ -261,7 +261,7 @@ const UpdateOrder = () => {
                                 : 0;
 
                             const price_per_unit =
-                                row.price + additionalCharges;
+                                Number(row.price) + additionalCharges;
 
                             return (
                                 <tr

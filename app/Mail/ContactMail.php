@@ -38,7 +38,6 @@ class ContactMail extends Mailable
     {
         return new Envelope(
             subject: 'Contacting Regarding Some Query',
-            from: $this->email,
             replyTo: [
                 $this->email,
             ],

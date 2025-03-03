@@ -18,7 +18,7 @@ const CustomTable = ({
             className="flex flex-col max-w-7xl mx-auto p-4"
         >
             <div className="overflow-x-auto">
-                <div className="min-w-full inline-block align-middle">
+                <div className="min-w-full block align-middle">
                     {/* <div className="relative  text-gray-500 focus-within:text-gray-900 mb-4">
                         <div className="absolute inset-y-0 left-1 flex items-center pl-3 pointer-events-none ">
                             <svg

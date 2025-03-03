@@ -72,7 +72,7 @@ const OrderDetails = ({ orderId, style }) => {
                 </button>
             </div>
 
-            <section ref={contentRef}>
+            <section ref={contentRef} className="text-xs">
                 <h1 className="text-2xl text-red-500">
                     www.upgmarket.com Order.
                 </h1>
@@ -138,7 +138,7 @@ const OrderDetails = ({ orderId, style }) => {
                             <div>
                                 <div>
                                     <span>Subtotal: </span>
-                                    <span>${total}.00</span>
+                                    <span>${Number(total).toFixed(2)}</span>
                                 </div>
                                 <div>
                                     <span>Shipping(Ground Service):</span>
@@ -150,7 +150,7 @@ const OrderDetails = ({ orderId, style }) => {
                                 </div>
                                 <div>
                                     <span>Order Total:</span>
-                                    <span>${total}.00</span>
+                                    <span>${Number(total).toFixed(2)}</span>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@ const OrderDetails = ({ orderId, style }) => {
                                 Number(row.wayne_logo_price);
 
                             const total_price_for_one =
-                                row.price * row.quantity;
+                                Number(row.price) * row.quantity;
 
                             const totalAdditionalCharges =
                                 additionalCharges * row.quantity;
@@ -192,8 +192,10 @@ const OrderDetails = ({ orderId, style }) => {
                                     className="bg-gray-100 transition-all duration-500 hover:bg-gray-200 "
                                 >
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
-                                        <span className="flex flex-col gap-2">
-                                            <span>{row.name}</span>{" "}
+                                        <span className="flex flex-col gap-1 text-xs">
+                                            <span className="max-w-40 text-wrap">
+                                                {row.name}
+                                            </span>{" "}
                                             <span>
                                                 Manufacturer: {row.manufacturer}
                                             </span>{" "}
@@ -221,29 +223,47 @@ const OrderDetails = ({ orderId, style }) => {
                                         </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <span className="flex flex-col gap-2">
-                                            <span>${row.price}</span>
+                                        <span className="flex flex-col gap-1 text-xs">
                                             <span>
-                                                Additions: ${additionalCharges}
+                                                ${Number(row.price).toFixed(2)}
                                             </span>
                                             <span>
-                                                Total: ${total_price_for_one}
+                                                Additions: $
+                                                {Number(
+                                                    additionalCharges
+                                                ).toFixed(2)}
+                                            </span>
+                                            <span>
+                                                Total: $
+                                                {Number(
+                                                    total_price_for_one
+                                                ).toFixed(2)}
                                             </span>
                                         </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        {" "}
-                                        {row?.quantity}
+                                        <span className="text-xs">
+                                            {" "}
+                                            {row?.quantity}
+                                        </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <span className="flex flex-col gap-2">
+                                        <span className="flex flex-col gap-1 text-xs">
                                             {additionalCharges === 0 ? (
                                                 <span>
-                                                    ${row.price * row.quantity}
+                                                    $
+                                                    {Number(
+                                                        Number(row.price) *
+                                                            row.quantity
+                                                    ).toFixed(2)}
                                                 </span>
                                             ) : (
                                                 <span className="line-through">
-                                                    ${row.price * row.quantity}
+                                                    $
+                                                    {Number(
+                                                        Number(row.price) *
+                                                            row.quantity
+                                                    ).toFixed(2)}
                                                 </span>
                                             )}
                                             <span>
@@ -251,7 +271,10 @@ const OrderDetails = ({ orderId, style }) => {
                                                 {totalAdditionalCharges}
                                             </span>
                                             <span>
-                                                Total: ${row.total_price}
+                                                Total: $
+                                                {Number(
+                                                    row.total_price
+                                                ).toFixed(2)}
                                             </span>
                                         </span>
                                     </td>
@@ -284,7 +307,7 @@ const OrderDetails = ({ orderId, style }) => {
                                         </button>
                                     </td> */}
                                     <td className=" p-5 ">
-                                        <span className="flex flex-col text-gray-900">
+                                        <span className="flex flex-col text-gray-900 text-xs">
                                             {row.product
                                                 ?.wayne_logo_position ? (
                                                 <span>
@@ -387,7 +410,7 @@ const OrderDetails = ({ orderId, style }) => {
                     <div className="flex flex-col justify-self-center mb-4 mt-1 w-[99.1%] p-4 bg-gray-100 transition-all duration-500 hover:bg-gray-200 ">
                         <div className="flex justify-between w-full">
                             <span>Subtotal: </span>
-                            <span>${total}.00</span>
+                            <span>${Number(total).toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between w-full">
                             <span>Shipping(Ground Service):</span>
@@ -399,7 +422,7 @@ const OrderDetails = ({ orderId, style }) => {
                         </div>
                         <div className="flex justify-between w-full">
                             <span>Order Total:</span>
-                            <span>${total}.00</span>
+                            <span>${Number(total).toFixed(2)}</span>
                         </div>
                     </div>
                 </div>

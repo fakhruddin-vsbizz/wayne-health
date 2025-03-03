@@ -99,143 +99,384 @@ const OrderConfirmation = () => {
             </div>
         </div>
     ) : (
-        <div className="w-full flex justify-center items-center my-4 px-16">
-            <section ref={contentRef} className="w-full">
-                <div className="w-full flex justify-between">
-                    <div className="flex flex-col gap-4">
-                        <div>
-                            <h1 className="text-2xl text-red-500">
-                                www.upmarket.com Order Confirmation
-                            </h1>
-                            <p className="text-gray-500 underline">
-                                The following order has been placed:
-                            </p>
+        <>
+            {/* <div className="w-full flex justify-center items-center my-4 px-16">
+                <section className="w-full">
+                    <div className="w-full flex justify-between">
+                        <div className="flex flex-col gap-4">
+                            <div>
+                                <h1 className="text-2xl text-red-500">
+                                    www.upmarket.com Order Confirmation
+                                </h1>
+                                <p className="text-gray-500 underline">
+                                    The following order has been placed:
+                                </p>
+                            </div>
+                            <div className="border bg-gray-100">
+                                <h2
+                                    style={{ color: primaryGreen }}
+                                    className="text-lg font-bold border-b bg-green-100 px-4 py-1"
+                                >
+                                    Ship To:
+                                </h2>
+                                <div className="flex flex-col px-4 py-1">
+                                    <span>Ground Service</span>
+                                    <span>{cartId.shipping_ship_to_name}</span>
+                                    <span>
+                                        {cartId.shipping_ship_to_company}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_address_line_1}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_address_line_2}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_postal_code}{" "}
+                                        {cartId.shipping_city}
+                                    </span>
+                                    <span>{cartId.shipping_country}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="border bg-gray-100">
-                            <h2
-                                style={{ color: primaryGreen }}
-                                className="text-lg font-bold border-b bg-green-100 px-4 py-1"
+                        <h2 className="text-2xl text-red-500">
+                            Order Number: {cartId.order_number}
+                        </h2>
+                        <div className="print:hidden">
+                            <button
+                                onClick={handlePrint}
+                                style={{ backgroundColor: primaryGreen }}
+                                className="bg-cyan-500 px-6 py-2 text-white border border-cyan-500 font-bold rounded-md mb-3 w-full lg:w-fit my-6 mt-0 max-w-sm"
                             >
-                                Ship To:
-                            </h2>
-                            <div className="flex flex-col px-4 py-1">
-                                <span>Ground Service</span>
-                                <span>{cartId.shipping_ship_to_name}</span>
-                                <span>{cartId.shipping_ship_to_company}</span>
-                                <span>{cartId.shipping_address_line_1}</span>
-                                <span>{cartId.shipping_address_line_2}</span>
-                                <span>
-                                    {cartId.shipping_postal_code}{" "}
-                                    {cartId.shipping_city}
-                                </span>
-                                <span>{cartId.shipping_country}</span>
+                                Print
+                            </button>
+                        </div>
+                    </div>
+                    <div className="w-full">
+                        <CustomTable
+                            style={{
+                                padding: "1rem 5px",
+                                margin: "0",
+                            }}
+                            noActionBtn={true}
+                            columns={columns}
+                        >
+                            {cartItems.map((row) => {
+                                const additionalCharges =
+                                    Number(row.embroidery_lines_cost) +
+                                    Number(row.embroidery_logo_cost) +
+                                    Number(row.wayne_logo_price);
+
+                                const total_price_for_one =
+                                    Number(row.price) + additionalCharges;
+
+                                const totalAdditionalCharges =
+                                    additionalCharges * row.quantity;
+
+                                return (
+                                    <tr
+                                        key={row.id}
+                                        className="bg-white transition-all duration-500 hover:bg-gray-50"
+                                    >
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
+                                            <div className="flex flex-col gap-2">
+                                                <span>{row.name}</span>{" "}
+                                                <span>
+                                                    Manufacturer:{" "}
+                                                    {row.manufacturer}
+                                                </span>{" "}
+                                                {row?.product?.colors ? (
+                                                    <span>
+                                                        Color:{" "}
+                                                        {row.product.colors}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.inseam ? (
+                                                    <span>
+                                                        Inseam: {row.inseam}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.fit ? (
+                                                    <span>Fit: {row.fit}</span>
+                                                ) : null}{" "}
+                                                {row?.size ? (
+                                                    <span>
+                                                        Size: {row.size}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.productLength ? (
+                                                    <span>
+                                                        Length:{" "}
+                                                        {row.productLength}
+                                                    </span>
+                                                ) : null}{" "}
+                                            </div>
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            <div className="flex flex-col gap-2">
+                                                <span>${row.price}</span>
+                                                <span>
+                                                    Additions: $
+                                                    {additionalCharges}
+                                                </span>
+                                                <span>
+                                                    Total: $
+                                                    {Number(
+                                                        total_price_for_one
+                                                    ).toFixed(2)}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            {" "}
+                                            {row?.quantity}
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            <div className="flex flex-col gap-2">
+                                                {additionalCharges === 0 ? (
+                                                    <span>
+                                                        $
+                                                        {row.price *
+                                                            row.quantity}
+                                                    </span>
+                                                ) : (
+                                                    <span className="line-through">
+                                                        $
+                                                        {row.price *
+                                                            row.quantity}
+                                                    </span>
+                                                )}
+                                                <span>
+                                                    Additions: $
+                                                    {totalAdditionalCharges}
+                                                </span>
+                                                <span>
+                                                    Total: ${row.total_price}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td className=" p-5 ">
+                                            <UpdateCart
+                                                noupdate={true}
+                                                setIsUpdated={setIsUpdated}
+                                                cartItem={row}
+                                            />
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </CustomTable>
+                        <div className="py-4 px-4 flex flex-col justify-self-start mb-4 mt-1 w-[92%] p-4 bg-gray-100 transition-all duration-500 hover:bg-gray-200 ">
+                            <div className="flex justify-between w-full">
+                                <span>Subtotal: </span>
+                                <span>${total}.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Shipping(Ground Service):</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Tax:</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Order Total:</span>
+                                <span>${total}.00</span>
                             </div>
                         </div>
                     </div>
-                    <h2 className="text-2xl text-red-500">
-                        Order Number: {cartId.id}
-                    </h2>
-                    <div className="print:hidden">
-                        <button
-                            onClick={handlePrint}
-                            style={{ backgroundColor: primaryGreen }}
-                            className="bg-cyan-500 px-6 py-2 text-white border border-cyan-500 font-bold rounded-md mb-3 w-full lg:w-fit my-6 mt-0 max-w-sm"
-                        >
-                            Print
-                        </button>
+                    <div className="mx-4 my-8 text-black">
+                        <hr className="border-black w-1/3 mb-4" />
+                        <p className="mb-3">
+                            Return Policy & Disclaimers: - Garments are not
+                            returnable.
+                        </p>
+                        <ul className="list-disc">
+                            <li className="ml-10">
+                                <p>
+                                    Please make sure the size is correct, and
+                                    all personalization information and
+                                    spellings are checked prior to placing the
+                                    order.
+                                </p>
+                            </li>
+                            <li className="ml-10">
+                                <p>
+                                    Turn garments inside out and wash according
+                                    to the manufacturer's laundering
+                                    instructions. We are not responsible for
+                                    incorrectly laundered garments.
+                                </p>
+                            </li>
+                        </ul>
+                        <hr className="border-black w-1/3 mt-4" />
                     </div>
-                </div>
-                <div className="w-full">
-                    <CustomTable
-                        style={{
-                            padding: "1rem 5px",
-                            margin: "0",
-                        }}
-                        noActionBtn={true}
-                        columns={columns}
-                    >
-                        {cartItems.map((row) => {
-                            const additionalCharges =
-                                Number(row.embroidery_lines_cost) +
-                                Number(row.embroidery_logo_cost) +
-                                Number(row.wayne_logo_price);
-
-                            const total_price_for_one =
-                                row.price + additionalCharges;
-
-                            const totalAdditionalCharges =
-                                additionalCharges * row.quantity;
-
-                            return (
-                                <tr
-                                    key={row.id}
-                                    className="bg-white transition-all duration-500 hover:bg-gray-50"
+                </section>
+            </div> */}
+            <div className="w-full block my-4 px-16">
+                <section ref={contentRef} className="w-full text-xs">
+                    <div className="w-full flex justify-between">
+                        <div className="flex flex-col gap-4">
+                            <div>
+                                <h1 className="text-2xl text-red-500">
+                                    www.upmarket.com Order Confirmation
+                                </h1>
+                                <p className="text-gray-500 underline">
+                                    The following order has been placed:
+                                </p>
+                            </div>
+                            <div className="border bg-gray-100">
+                                <h2
+                                    style={{ color: primaryGreen }}
+                                    className="text-lg font-bold border-b bg-green-100 px-4 py-1"
                                 >
-                                    <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
-                                        <div className="flex flex-col gap-2">
-                                            <span>{row.name}</span>{" "}
-                                            <span>
-                                                Manufacturer: {row.manufacturer}
-                                            </span>{" "}
-                                            {row?.product?.colors ? (
-                                                <span>
-                                                    Color: {row.product.colors}
+                                    Ship To:
+                                </h2>
+                                <div className="flex flex-col px-4 py-1">
+                                    <span>Ground Service</span>
+                                    <span>{cartId.shipping_ship_to_name}</span>
+                                    <span>
+                                        {cartId.shipping_ship_to_company}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_address_line_1}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_address_line_2}
+                                    </span>
+                                    <span>
+                                        {cartId.shipping_postal_code}{" "}
+                                        {cartId.shipping_city}
+                                    </span>
+                                    <span>{cartId.shipping_country}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 className="text-xl text-red-500">
+                            Order Number: {cartId.order_number}
+                        </h2>
+                        <div className="print:hidden">
+                            <button
+                                onClick={handlePrint}
+                                style={{ backgroundColor: primaryGreen }}
+                                className="bg-cyan-500 px-6 py-2 text-white border border-cyan-500 font-bold rounded-md mb-3 w-full lg:w-fit my-6 mt-0 max-w-sm"
+                            >
+                                Print
+                            </button>
+                        </div>
+                    </div>
+                    <div className="w-full">
+                        <CustomTable
+                            style={{
+                                padding: "1rem 5px",
+                                margin: "0",
+                            }}
+                            noActionBtn={true}
+                            columns={columns}
+                        >
+                            {cartItems.map((row) => {
+                                const additionalCharges =
+                                    Number(row.embroidery_lines_cost) +
+                                    Number(row.embroidery_logo_cost) +
+                                    Number(row.wayne_logo_price);
+
+                                const total_price_for_one =
+                                    Number(row.price) + additionalCharges;
+
+                                const totalAdditionalCharges =
+                                    additionalCharges * row.quantity;
+
+                                return (
+                                    <tr
+                                        key={row.id}
+                                        className="bg-white transition-all duration-500 hover:bg-gray-50"
+                                    >
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
+                                            <div className="flex flex-col gap-2">
+                                                <span className="max-w-40 text-wrap text-xs">
+                                                    {row.name}
+                                                </span>{" "}
+                                                <span className="text-xs">
+                                                    Manufacturer:{" "}
+                                                    {row.manufacturer}
+                                                </span>{" "}
+                                                {row?.product?.colors ? (
+                                                    <span className="text-xs">
+                                                        Color:{" "}
+                                                        {row.product.colors}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.inseam ? (
+                                                    <span className="text-xs">
+                                                        Inseam: {row.inseam}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.fit ? (
+                                                    <span className="text-xs">
+                                                        Fit: {row.fit}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.size ? (
+                                                    <span className="text-xs">
+                                                        Size: {row.size}
+                                                    </span>
+                                                ) : null}{" "}
+                                                {row?.productLength ? (
+                                                    <span className="text-xs">
+                                                        Length:{" "}
+                                                        {row.productLength}
+                                                    </span>
+                                                ) : null}{" "}
+                                            </div>
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            <div className="flex flex-col gap-2">
+                                                <span className="text-xs">
+                                                    ${row.price}
                                                 </span>
-                                            ) : null}{" "}
-                                            {row?.inseam ? (
-                                                <span>
-                                                    Inseam: {row.inseam}
+                                                <span className="text-xs">
+                                                    Additions: $
+                                                    {additionalCharges}
                                                 </span>
-                                            ) : null}{" "}
-                                            {row?.fit ? (
-                                                <span>Fit: {row.fit}</span>
-                                            ) : null}{" "}
-                                            {row?.size ? (
-                                                <span>Size: {row.size}</span>
-                                            ) : null}{" "}
-                                            {row?.productLength ? (
-                                                <span>
-                                                    Length: {row.productLength}
+                                                <span className="text-xs">
+                                                    Total: $
+                                                    {Number(
+                                                        total_price_for_one
+                                                    ).toFixed(2)}
                                                 </span>
-                                            ) : null}{" "}
-                                        </div>
-                                    </td>
-                                    <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <div className="flex flex-col gap-2">
-                                            <span>${row.price}</span>
-                                            <span>
-                                                Additions: ${additionalCharges}
+                                            </div>
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            <span className="text-xs">
+                                                {" "}
+                                                {row?.quantity}
                                             </span>
-                                            <span>
-                                                Total: ${total_price_for_one}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        {" "}
-                                        {row?.quantity}
-                                    </td>
-                                    <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <div className="flex flex-col gap-2">
-                                            {additionalCharges === 0 ? (
-                                                <span>
-                                                    ${row.price * row.quantity}
+                                        </td>
+                                        <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            <div className="flex flex-col gap-2">
+                                                {additionalCharges === 0 ? (
+                                                    <span className="text-xs">
+                                                        $
+                                                        {row.price *
+                                                            row.quantity}
+                                                    </span>
+                                                ) : (
+                                                    <span className="line-through text-xs">
+                                                        $
+                                                        {row.price *
+                                                            row.quantity}
+                                                    </span>
+                                                )}
+                                                <span className="text-xs">
+                                                    Additions: $
+                                                    {totalAdditionalCharges}
                                                 </span>
-                                            ) : (
-                                                <span className="line-through">
-                                                    ${row.price * row.quantity}
+                                                <span className="text-xs">
+                                                    Total: ${row.total_price}
                                                 </span>
-                                            )}
-                                            <span>
-                                                Additions: $
-                                                {totalAdditionalCharges}
-                                            </span>
-                                            <span>
-                                                Total: ${row.total_price}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    {/* <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
+                                            </div>
+                                        </td>
+                                        {/* <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                         <button
                                             onClick={() =>
                                                 onDeleteCartItem(row.id)
@@ -263,63 +504,163 @@ const OrderConfirmation = () => {
                                             </span>
                                         </button>
                                     </td> */}
-                                    <td className=" p-5 ">
-                                        <UpdateCart
-                                            noupdate={true}
-                                            setIsUpdated={setIsUpdated}
-                                            cartItem={row}
-                                        />
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </CustomTable>
-                    <div className="py-4 px-4 flex flex-col justify-self-start mb-4 mt-1 w-[92%] p-4 bg-gray-100 transition-all duration-500 hover:bg-gray-200 ">
-                        <div className="flex justify-between w-full">
-                            <span>Subtotal: </span>
-                            <span>${total}.00</span>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <span>Shipping(Ground Service):</span>
-                            <span>$0.00</span>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <span>Tax:</span>
-                            <span>$0.00</span>
-                        </div>
-                        <div className="flex justify-between w-full">
-                            <span>Order Total:</span>
-                            <span>${total}.00</span>
+                                        <td className=" p-5 ">
+                                            <span className="flex flex-col">
+                                                {row.product
+                                                    ?.wayne_logo_position ? (
+                                                    <span className="text-xs">
+                                                        Wayne Health Logo $
+                                                        {
+                                                            row.product
+                                                                .wayne_logo_price
+                                                        }
+                                                        : {""}
+                                                        {row?.wayne_logo ===
+                                                        "yes"
+                                                            ? row?.wayne_logo
+                                                            : "no"}
+                                                    </span>
+                                                ) : null}
+                                                {row.product
+                                                    ?.co_brand_logo_position ? (
+                                                    row?.co_brand_logo ? (
+                                                        <span className="text-xs">
+                                                            Co-brand Logo $
+                                                            {
+                                                                row.embroidery_logo_cost
+                                                            }
+                                                            :{" "}
+                                                            {row?.co_brand_logo}
+                                                        </span>
+                                                    ) : null
+                                                ) : null}
+                                                {row.product
+                                                    ?.official_logo_position ? (
+                                                    row?.official_logo ? (
+                                                        <span className="text-xs">
+                                                            Official Logo $
+                                                            {
+                                                                row.embroidery_logo_cost
+                                                            }
+                                                            :
+                                                        </span>
+                                                    ) : null
+                                                ) : null}
+                                                {row.product
+                                                    ?.embroidery_lines ===
+                                                "line1" ? (
+                                                    row?.line1 ? (
+                                                        <span className="text-xs">
+                                                            Line 1 $
+                                                            {
+                                                                row.embroidery_lines_cost
+                                                            }
+                                                            : {row?.line1}
+                                                        </span>
+                                                    ) : null
+                                                ) : null}
+                                                {row.product
+                                                    ?.embroidery_lines ===
+                                                "line2" ? (
+                                                    <>
+                                                        {row?.line1 ? (
+                                                            <span className="text-xs">
+                                                                Line 1 $
+                                                                {
+                                                                    row.embroidery_lines_cost
+                                                                }
+                                                                : {row?.line1}
+                                                            </span>
+                                                        ) : null}
+                                                        {row?.line2 ? (
+                                                            <span className="text-xs">
+                                                                Line 2:{" "}
+                                                                {row?.line2}
+                                                            </span>
+                                                        ) : null}
+                                                    </>
+                                                ) : null}
+                                                {row.product
+                                                    ?.embroidery_lines ===
+                                                "line3" ? (
+                                                    <>
+                                                        {row?.line1 ? (
+                                                            <span className="text-xs">
+                                                                Line 1 $
+                                                                {
+                                                                    row.embroidery_lines_cost
+                                                                }
+                                                                : {row?.line1}
+                                                            </span>
+                                                        ) : null}
+                                                        {row?.line2 ? (
+                                                            <span className="text-xs">
+                                                                Line 2:{" "}
+                                                                {row?.line2}
+                                                            </span>
+                                                        ) : null}
+                                                        {row?.line3 ? (
+                                                            <span className="text-xs">
+                                                                Line 3:{" "}
+                                                                {row?.line3}
+                                                            </span>
+                                                        ) : null}
+                                                    </>
+                                                ) : null}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </CustomTable>
+                        <div className="py-4 px-4 flex flex-col justify-self-start mb-4 mt-1 w-[92%] p-4 bg-gray-100 transition-all duration-500 hover:bg-gray-200 ">
+                            <div className="flex justify-between w-full">
+                                <span>Subtotal: </span>
+                                <span>${total}.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Shipping(Ground Service):</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Tax:</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div className="flex justify-between w-full">
+                                <span>Order Total:</span>
+                                <span>${total}.00</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="mx-4 my-8 text-black">
-                    <hr className="border-black w-1/3 mb-4" />
-                    <p className="mb-3">
-                        Return Policy & Disclaimers: - Garments are not
-                        returnable.
-                    </p>
-                    <ul className="list-disc">
-                        <li className="ml-10">
-                            <p>
-                                Please make sure the size is correct, and all
-                                personalization information and spellings are
-                                checked prior to placing the order.
-                            </p>
-                        </li>
-                        <li className="ml-10">
-                            <p>
-                                Turn garments inside out and wash according to
-                                the manufacturer's laundering instructions. We
-                                are not responsible for incorrectly laundered
-                                garments.
-                            </p>
-                        </li>
-                    </ul>
-                    <hr className="border-black w-1/3 mt-4" />
-                </div>
-            </section>
-        </div>
+                    <div className="mx-4 my-8 text-black">
+                        <hr className="border-black w-1/3 mb-4" />
+                        <p className="mb-3">
+                            Return Policy & Disclaimers: - Garments are not
+                            returnable.
+                        </p>
+                        <ul className="list-disc">
+                            <li className="ml-10">
+                                <p>
+                                    Please make sure the size is correct, and
+                                    all personalization information and
+                                    spellings are checked prior to placing the
+                                    order.
+                                </p>
+                            </li>
+                            <li className="ml-10">
+                                <p>
+                                    Turn garments inside out and wash according
+                                    to the manufacturer's laundering
+                                    instructions. We are not responsible for
+                                    incorrectly laundered garments.
+                                </p>
+                            </li>
+                        </ul>
+                        <hr className="border-black w-1/3 mt-4" />
+                    </div>
+                </section>
+            </div>
+        </>
     );
 };
 

@@ -270,12 +270,20 @@ const OrderReview = ({
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                         <div className="flex flex-col gap-2">
-                                            <span>${row.price}</span>
                                             <span>
-                                                Additions: ${additionalCharges}
+                                                ${Number(row.price).toFixed(2)}
                                             </span>
                                             <span>
-                                                Total: ${total_price_for_one}
+                                                Additions: $
+                                                {Number(
+                                                    additionalCharges
+                                                ).toFixed(2)}
+                                            </span>
+                                            <span>
+                                                Total: $
+                                                {Number(
+                                                    total_price_for_one
+                                                ).toFixed(2)}
                                             </span>
                                         </div>
                                     </td>
@@ -317,16 +325,26 @@ const OrderReview = ({
                                         <div className="flex flex-col gap-2">
                                             {additionalCharges === 0 ? (
                                                 <span>
-                                                    ${row.price * row.quantity}
+                                                    $
+                                                    {Number(
+                                                        Number(row.price) *
+                                                            row.quantity
+                                                    ).toFixed(2)}
                                                 </span>
                                             ) : (
                                                 <span className="line-through">
-                                                    ${row.price * row.quantity}
+                                                    $
+                                                    {Number(
+                                                        Number(row.price) *
+                                                            row.quantity
+                                                    ).toFixed(2)}
                                                 </span>
                                             )}
                                             <span>
                                                 Additions: $
-                                                {totalAdditionalCharges}
+                                                {Number(
+                                                    totalAdditionalCharges
+                                                ).toFixed(2)}
                                             </span>
                                             <span>
                                                 Total: ${row.total_price}

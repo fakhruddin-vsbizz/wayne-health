@@ -215,7 +215,7 @@ const Contact = () => {
                                 <FormInputField
                                     type="text"
                                     name="first_name"
-                                    className="w-full"
+                                    className="w-full text-gray-800"
                                     placeholder="First Name"
                                     value={fields.first_name}
                                     onChange={handleChange}
@@ -249,7 +249,7 @@ const Contact = () => {
                                 <FormInputField
                                     type="text"
                                     name="last_name"
-                                    className="w-full"
+                                    className="w-full text-gray-800"
                                     placeholder="Last Name"
                                     value={fields.last_name}
                                     onChange={handleChange}
@@ -278,7 +278,7 @@ const Contact = () => {
                                 <FormInputField
                                     type="text"
                                     name="phone"
-                                    className="w-full disabled:bg-gray-500"
+                                    className="w-full text-gray-800"
                                     placeholder="Phone"
                                     value={fields.phone}
                                     onChange={handleChange}
@@ -304,7 +304,7 @@ const Contact = () => {
                                 <FormInputField
                                     type="text"
                                     name="email"
-                                    className="w-full"
+                                    className="w-full text-gray-800"
                                     placeholder="Email"
                                     value={fields.email}
                                     onChange={handleChange}
@@ -407,7 +407,7 @@ const Contact = () => {
                             disabled={isLoading}
                             style={{ backgroundColor: primaryGreen }}
                             onClick={sendContactEmail}
-                            class="mt-4 flex items-center justify-center text-sm lg:ml-auto max-lg:w-full rounded-lg px-4 py-3 tracking-wide text-white bg-blue-600 hover:bg-blue-700"
+                            class="mt-4 flex items-center justify-center text-sm lg:ml-auto max-lg:w-full rounded-lg px-4 py-3 tracking-wide text-white bg-blue-600 disabled:bg-gray-600 hover:bg-blue-700"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
