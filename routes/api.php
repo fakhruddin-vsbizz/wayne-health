@@ -41,6 +41,7 @@ Route::prefix("admin")->group(function () {
     Route::apiResource('products', ProductResourceController::class);
 
     Route::post('/products/custom-update/{product}', [ProductResourceController::class, 'updateProduct']);
+    Route::put('/products/deactivateToggle/{product}', [ProductResourceController::class, 'productDiscontinued'])->middleware('auth:admins');
     Route::get('/account/orderHistory/{customer}', [CustomerPersonalController::class, 'orderHistoryAdmin'])->middleware('auth:admins');
 
 

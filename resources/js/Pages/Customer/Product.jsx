@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FormInputField from "../../Components/FormInputField";
 import FormSelectField from "../../Components/FormSelectField";
 import {
@@ -9,6 +9,7 @@ import {
     official_logo_options,
     pdfNames,
     primaryGreen,
+    toastOptions,
     wayne_logo_options,
 } from "../../constantVriables";
 import Counter from "../../Components/Counter";
@@ -38,6 +39,8 @@ const ProductPage = ({ setCartIsUpdated }) => {
     const [noPersonalization, setNoPersonalization] = useState(false);
 
     const [error, setError] = useState({});
+
+    const navigate = useNavigate();
 
     const { productId } = useParams();
 
@@ -142,6 +145,12 @@ const ProductPage = ({ setCartIsUpdated }) => {
                 console.log(data);
                 if (data?.data) {
                     console.log(data.data);
+
+                    if (data.data.is_discontinued) {
+                        toast.error("Product not found", toastOptions);
+                        navigate("/customer/home");
+                    }
+
                     setProduct(data.data);
                     const isPersonalization =
                         data.data?.embroidery_lines_position !== null ||
@@ -312,17 +321,17 @@ const ProductPage = ({ setCartIsUpdated }) => {
                     >
                         <div className="product-image">
                             <div
-                                style={{
-                                    maxHeight: "420px",
-                                    maxWidth: "180px",
-                                }}
+                                // style={{
+                                //     maxHeight: "420px",
+                                //     maxWidth: "180px",
+                                // }}
                                 className="zoom-container main-image"
                             >
                                 <img
-                                    style={{
-                                        maxHeight: "420px",
-                                        maxWidth: "180px",
-                                    }}
+                                    // style={{
+                                    //     maxHeight: "420px",
+                                    //     maxWidth: "180px",
+                                    // }}
                                     src={`/images/${product.product_image}`}
                                     alt="Product"
                                     className="w-full h-auto rounded-lg shadow-md mb-4 zoom-image"

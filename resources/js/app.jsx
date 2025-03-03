@@ -4,10 +4,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./Pages/App";
-import { BrowserRouter } from "react-router-dom";
+import AppProvider from "./Context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("app")).render(
-    <BrowserRouter>
+    <AppProvider>
         <App />
-    </BrowserRouter>
+    </AppProvider>
 );

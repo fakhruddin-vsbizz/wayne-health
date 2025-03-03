@@ -20,7 +20,13 @@ const CustomerHome = () => {
             .then((data) => {
                 console.log(data);
                 if (data?.data) {
-                    setProducts(data.data);
+                    if (data?.data.length !== 0) {
+                        setProducts(
+                            data.data.filter((fItem) => !fItem.is_discontinued)
+                        );
+                    } else {
+                        setProducts([]);
+                    }
                 }
             })
             .catch((err) => console.log(err));

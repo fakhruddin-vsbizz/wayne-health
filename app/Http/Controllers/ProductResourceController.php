@@ -186,6 +186,17 @@ class ProductResourceController extends Controller
         ];
     }
 
+    public function productDiscontinued(Request $request, Product $product)
+    {
+
+
+        $product->update(['is_discontinued' => $request->is_discontinued]);
+
+        return [
+            'success' => 'Product updated successfully!'
+        ];
+    }
+
 
     public function updateProduct(Request $request, Product $product)
     {
