@@ -38,6 +38,8 @@ const OrderReview = ({
 
     const [isUpdated, setIsUpdated] = useState(false);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const [isEdit, setIsEdit] = useState(false);
 
     const [editId, setEditId] = useState(null);
@@ -104,6 +106,7 @@ const OrderReview = ({
 
     const onPlaceOrder = (e) => {
         console.log(orderDetails);
+        setIsLoading(true);
         const token = localStorage.getItem("x-wayne-health-token");
         let newOrderDetails = {
             ...orderDetails,
@@ -120,6 +123,7 @@ const OrderReview = ({
             .then((data) => {
                 console.log(data);
                 if (data?.data) {
+                    setIsLoading(false);
                     navigate("/customer/order-confirmation", {
                         state: { orderId: data.data.order.id },
                     });
@@ -162,7 +166,10 @@ const OrderReview = ({
                     // setCustomers(data.data);
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                setIsLoading(false);
+                console.log(err);
+            });
     };
 
     useEffect(() => {
@@ -411,14 +418,25 @@ const OrderReview = ({
                             </dl>
                         </div>
 
-                        <Link
-                            to={"/customer/checkout"}
-                            style={{ backgroundColor: primaryGreen }}
-                            onClick={onPlaceOrder}
-                            class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-primary-300"
-                        >
-                            Place Order
-                        </Link>
+                        {isLoading ? (
+                            <Link
+                                to={"#"}
+                                style={{ backgroundColor: primaryGreen }}
+                                // onClick={onPlaceOrder}
+                                class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                            >
+                                Place Order
+                            </Link>
+                        ) : (
+                            <Link
+                                to={"/customer/checkout"}
+                                style={{ backgroundColor: primaryGreen }}
+                                onClick={onPlaceOrder}
+                                class="flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                            >
+                                Place Order
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
