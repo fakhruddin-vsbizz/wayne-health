@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputField from "../../../Components/InputField";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { primaryGradient, primaryGreen } from "../../../constantVriables";
+import { AppContext } from "../../../Context/AuthContext";
 
 const CustomerLogin = () => {
     const [username, setUsername] = useState("");

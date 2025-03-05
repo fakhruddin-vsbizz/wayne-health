@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     primaryGreen,
     primaryYellow,
     toastOptions,
 } from "../../constantVriables";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInputField from "../../Components/FormInputField";
 import FormTextAreaField from "../../Components/FormTextAreaField";
 import ReactDOMServer from "react-dom/server";
 import ContactMail from "./mail/ContactMail";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const INITIAL_VALUE = {
     first_name: "",
@@ -22,6 +23,57 @@ const INITIAL_VALUE = {
 
 const Contact = () => {
     const [fields, setFields] = useState(INITIAL_VALUE);
+
+    const [token, setToken] = useState(
+        localStorage.getItem("x-wayne-health-token")
+    );
+
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    const getUser = async () => {
+        try {
+            const customer = await axios.get("/api/user/customer", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            setUser("customer");
+            console.log(customer);
+        } catch (error) {
+            console.log(error);
+            if (error?.response?.data?.message === "Unauthenticated.") {
+                try {
+                    const admin = await axios.get("/api/user/admin", {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                        },
+                    });
+                    setUser("admin");
+                    navigate("/admin/orders");
+                    console.log(admin);
+                } catch (error) {
+                    console.log(error);
+                    setUser(null);
+                    navigate("/login");
+                }
+            }
+        }
+    };
+
+    useEffect(() => {
+        console.log(user);
+        if (token) {
+            getUser();
+        } else {
+            navigate("/login");
+        }
+    }, [token]);
 
     const [isLoading, setIsLoading] = useState(false);
 

@@ -382,7 +382,7 @@ const EditLabCoat = () => {
                         name="co_brand_logo_position"
                         label="Co Brand Logo Position"
                         value={fields.co_brand_logo_position}
-                        placeholder="Enter Postal Code"
+                        placeholder="Enter Co Brand Logo Position"
                         onChange={handleChange}
                         error={error?.co_brand_logo_position}
                         options={position_options}

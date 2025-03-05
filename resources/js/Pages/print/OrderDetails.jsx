@@ -72,12 +72,12 @@ const OrderDetails = ({ orderId, style }) => {
                 </button>
             </div>
 
-            <section ref={contentRef} className="text-xs">
+            <section ref={contentRef} className="text-sm">
                 <h1 className="text-2xl text-red-500">
                     www.upgmarket.com Order.
                 </h1>
 
-                <span className="text-xs font-bold">
+                <span className="text-sm font-bold">
                     Your Order #{orderDetails.order_number} (placed on{" "}
                     {moment(orderDetails.created_at).format(
                         "MMMM Do YYYY, h:mm:ss a"
@@ -192,7 +192,7 @@ const OrderDetails = ({ orderId, style }) => {
                                     className="bg-gray-100 transition-all duration-500 hover:bg-gray-200 "
                                 >
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
-                                        <span className="flex flex-col gap-1 text-xs">
+                                        <span className="flex flex-col gap-1 text-sm">
                                             <span className="max-w-40 text-wrap">
                                                 {row.name}
                                             </span>{" "}
@@ -223,7 +223,7 @@ const OrderDetails = ({ orderId, style }) => {
                                         </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <span className="flex flex-col gap-1 text-xs">
+                                        <span className="flex flex-col gap-1 text-sm">
                                             <span>
                                                 ${Number(row.price).toFixed(2)}
                                             </span>
@@ -242,13 +242,13 @@ const OrderDetails = ({ orderId, style }) => {
                                         </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <span className="text-xs">
+                                        <span className="text-sm">
                                             {" "}
                                             {row?.quantity}
                                         </span>
                                     </td>
                                     <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                                        <span className="flex flex-col gap-1 text-xs">
+                                        <span className="flex flex-col gap-1 text-sm">
                                             {additionalCharges === 0 ? (
                                                 <span>
                                                     $
@@ -268,7 +268,9 @@ const OrderDetails = ({ orderId, style }) => {
                                             )}
                                             <span>
                                                 Additions: $
-                                                {totalAdditionalCharges}
+                                                {Number(
+                                                    totalAdditionalCharges
+                                                ).toFixed(2)}
                                             </span>
                                             <span>
                                                 Total: $
@@ -307,7 +309,7 @@ const OrderDetails = ({ orderId, style }) => {
                                         </button>
                                     </td> */}
                                     <td className=" p-5 ">
-                                        <span className="flex flex-col text-gray-900 text-xs">
+                                        <span className="flex flex-col text-gray-900 text-sm">
                                             {row.product
                                                 ?.wayne_logo_position ? (
                                                 <span>

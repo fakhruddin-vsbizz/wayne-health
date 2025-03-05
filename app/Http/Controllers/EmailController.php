@@ -17,7 +17,7 @@ class EmailController extends Controller
         $customerEmail = Customer::find($id)->email;
 
         $emailHtml = $request->input('emailHtml');
-        $recipient1 = 'tasneem@alyko.com'; // You can modify this to be dynamic
+        $recipient1 = 'tasneemalyko@gmail.com'; // You can modify this to be dynamic
         $recipient2 = $customerEmail; // You can modify this to be dynamic
 
         Mail::to([$recipient1, $recipient2])->send(new OrderConfirmationMail($emailHtml));

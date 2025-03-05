@@ -67,4 +67,22 @@ class AdminAuthController extends Controller
             'success' => 'You are logged out.'
         ];
     }
+
+    public function updateAdmin(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        if ($request->password != null) {
+            $validated['password'] = bcrypt($request->password);
+        }
+
+        $admin = $request->user();
+        $admin->update($validated);
+
+        return $admin;
+    }
 }

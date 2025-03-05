@@ -118,23 +118,29 @@ const AllCustomers = () => {
                     >
                         <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">
                             {" "}
-                            {`${row?.first_name} ${row?.last_name}`}
+                            <span className="text-wrap">
+                                {`${row?.first_name} ${row?.last_name}`}
+                            </span>
                         </td>
                         <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                             {" "}
-                            {`${row?.state} ${row?.city} ${row?.postal_code}`}
+                            <span className="text-wrap">
+                                {`${row?.state} ${row?.city} ${row?.postal_code}`}
+                            </span>
                         </td>
                         <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                             {" "}
-                            {row?.email}
+                            <span className="text-wrap">{row?.email}</span>
                         </td>
                         <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                             {" "}
-                            {row?.company_name}
+                            <span className="text-wrap">
+                                {row?.company_name}
+                            </span>
                         </td>
                         <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                             {" "}
-                            {row?.phone}
+                            <span className="text-wrap">{row?.phone}</span>
                         </td>
                         <td className=" p-5 ">
                             <div className="flex items-center gap-1">

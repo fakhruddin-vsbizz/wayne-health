@@ -24,7 +24,7 @@ const columns = [
     "Address Line 1",
     "City",
     "State",
-    "Postal Code",
+    "Zip Code",
     "Country",
 ];
 
@@ -222,9 +222,9 @@ const ShippingUpdate = () => {
                             type="text"
                             id="postal_code"
                             name="postal_code"
-                            label="Postal Code"
+                            label="Zip Code"
                             value={fields.postal_code}
-                            placeholder="Enter Postal Code"
+                            placeholder="Enter Zip Code"
                             onChange={handleChange}
                             error={error?.postal_code}
                         />

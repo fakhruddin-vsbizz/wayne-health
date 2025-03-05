@@ -196,7 +196,7 @@ const OrderReview = ({
             <div className="container mx-auto p-4">
                 <p>
                     Your purchase confirmation will be emailed to you from
-                    orders@alykostores.com. Please watch for your purchase
+                    orders@upgmarket.com. Please watch for your purchase
                     confirmation from this email address.
                 </p>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mt-8">

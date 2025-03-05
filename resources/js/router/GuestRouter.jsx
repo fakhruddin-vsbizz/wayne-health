@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import CustomerLogin from "../Pages/Customer/Auth/Login";
 import AdminLogin from "../Pages/Admin/Auth/Login";
@@ -41,6 +41,7 @@ import EditLabCoat from "../Pages/Admin/Products/EditLabCoat";
 import EditTop from "../Pages/Admin/Products/EditTop";
 import EditPant from "../Pages/Admin/Products/EditPant";
 import SingleCustomerOrders from "../Pages/Admin/Orders/SingleCustomerOrders";
+import AdminAccountUpdate from "../Pages/Admin/AdminAccount/AdminAccount";
 
 // const getUser = (setCustomer, setAdmin, token) => {
 //     axios
@@ -135,6 +136,10 @@ const GuestRouter = () => {
                 <Route
                     path="create-product/lab-coat/:productId"
                     element={<EditLabCoat />}
+                />
+                <Route
+                    path="update-admin-account"
+                    element={<AdminAccountUpdate />}
                 />
                 <Route path="create-product/top" element={<CreateTop />} />
                 <Route

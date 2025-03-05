@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     Navbar,
     Collapse,
@@ -21,6 +21,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AppContext } from "../Context/AuthContext";
 
 // const nestedMenuItems = [
 //     {
@@ -251,7 +252,10 @@ export function CustomNavBar() {
                     navigate("/admin/login");
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                navigate("/admin/login");
+                console.log(err);
+            });
     };
 
     React.useEffect(() => {
@@ -286,6 +290,19 @@ export function CustomNavBar() {
                     <NavList />
                 </div>
                 <div className="hidden gap-2 lg:flex">
+                    <div class="relative flex items-center lg:space-x-2 px-2">
+                        <NavLink
+                            to="/admin/update-admin-account"
+                            color="blue-gray"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "font-normal active text-white text-sm"
+                                    : "font-normal text-white text-sm"
+                            }
+                        >
+                            My Account
+                        </NavLink>
+                    </div>
                     {/* <Button size="sm">Get Started</Button> */}
                     <Button
                         className="text-white border-white"

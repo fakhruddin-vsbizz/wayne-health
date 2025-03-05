@@ -72,7 +72,7 @@ const PaySlip = ({ orderId, style }) => {
             </div>
 
             <section
-                className="border-2 border-black p-4 text-xs"
+                className="border-2 border-black p-4 text-sm"
                 ref={contentRef}
             >
                 <div className="border-b-2 p-2">
@@ -216,8 +216,8 @@ const PaySlip = ({ orderId, style }) => {
                                             className="transition-all duration-500  border-b-2"
                                         >
                                             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 border-black border-2">
-                                                <span className="flex flex-col gap-1 text-xs">
-                                                    <span className="text-blue-600 underline max-w-40 text-wrap text-xs">
+                                                <span className="flex flex-col gap-1 text-sm">
+                                                    <span className="text-blue-600 underline max-w-40 text-wrap text-sm">
                                                         {row.name}
                                                     </span>{" "}
                                                     <span>
@@ -259,7 +259,7 @@ const PaySlip = ({ orderId, style }) => {
                                                 {row?.quantity}
                                             </td>
                                             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 border-black border-2">
-                                                <span className="flex flex-col gap-1 text-xs">
+                                                <span className="flex flex-col gap-1 text-sm">
                                                     <span>${row.price}</span>
                                                     <span>
                                                         Additions: $
@@ -272,7 +272,7 @@ const PaySlip = ({ orderId, style }) => {
                                                 </span>
                                             </td>
                                             <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 border-black border-2">
-                                                <span className="flex flex-col gap-1 text-xs">
+                                                <span className="flex flex-col gap-1 text-sm">
                                                     {additionalCharges === 0 ? (
                                                         <span>
                                                             $

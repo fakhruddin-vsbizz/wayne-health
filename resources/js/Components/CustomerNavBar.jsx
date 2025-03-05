@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Navbar,
     Collapse,
@@ -23,6 +23,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import CartListItem from "./CartListItem";
 import { primaryYellow } from "../constantVriables";
+import { AppContext } from "../Context/AuthContext";
 
 // const nestedMenuItems = [
 //     {
@@ -298,7 +299,6 @@ export function CustomerNavBar({ isUpdated, setIsUpdated }) {
                 if (data?.data?.success) {
                     localStorage.removeItem("x-wayne-health-type");
                     localStorage.removeItem("x-wayne-health-token");
-
                     toast.success(data.data.success, {
                         position: "top-right",
                         autoClose: 3000,
@@ -312,7 +312,10 @@ export function CustomerNavBar({ isUpdated, setIsUpdated }) {
                     navigate("/login");
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                navigate("/login");
+                console.log(err);
+            });
     };
 
     useEffect(() => {

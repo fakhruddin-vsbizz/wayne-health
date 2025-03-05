@@ -30,6 +30,7 @@ Route::get('/', function () {
 
 Route::prefix("admin")->group(function () {
     Route::post('/register', [AdminAuthController::class, 'register']);
+    Route::put('/update-admin', [AdminAuthController::class, 'updateAdmin'])->middleware('auth:admins');
     Route::post('/login', [AdminAuthController::class, 'login']);
     Route::post('/logout', [AdminAuthController::class, 'logout'])->middleware('auth:admins');
 

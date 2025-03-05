@@ -244,9 +244,9 @@ const AccountUpdate = () => {
                             type="text"
                             id="postal_code"
                             name="postal_code"
-                            label="Postal Code"
+                            label="Zip Code"
                             value={fields.postal_code}
-                            placeholder="Enter Postal Code"
+                            placeholder="Enter Zip Code"
                             onChange={handleChange}
                             error={error?.postal_code}
                         />

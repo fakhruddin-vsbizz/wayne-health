@@ -41,9 +41,14 @@ class ContactEmailController extends Controller
 
         $emailHtml = $request->input('emailHtml');
         $name = $request->name;
-        $email = $request->email;
+        if ($request->email == null) {
+            # code...
+            $email = $customerEmail;
+        } else {
+            $email = $request->email;
+        }
         $phone = $request->phone;
-        $recipient1 = 'tasneem@alyko.com'; // You can modify this to be dynamic
+        $recipient1 = 'tasneemalyko@gmail.com'; // You can modify this to be dynamic
         // $recipient2 = $customerEmail; // You can modify this to be dynamic
 
         // return [

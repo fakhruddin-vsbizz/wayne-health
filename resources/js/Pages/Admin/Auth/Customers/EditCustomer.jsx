@@ -237,9 +237,9 @@ const EditCustomer = () => {
                         type="text"
                         id="postal_code"
                         name="postal_code"
-                        label="Postal Code"
+                        label="Zip code"
                         value={fields.postal_code}
-                        placeholder="Enter Postal Code"
+                        placeholder="Enter Zip code"
                         onChange={handleChange}
                         error={error?.postal_code}
                     />
