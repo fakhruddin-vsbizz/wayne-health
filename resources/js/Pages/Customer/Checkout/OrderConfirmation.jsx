@@ -187,6 +187,10 @@ const OrderConfirmation = () => {
                                                     Manufacturer:{" "}
                                                     {row.manufacturer}
                                                 </span>{" "}
+                                                <span>
+                                                    Item Code:{" "}
+                                                    {row.product.item_code}
+                                                </span>{" "}
                                                 {row?.product?.colors ? (
                                                     <span className="text-sm">
                                                         Color:{" "}

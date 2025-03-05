@@ -252,6 +252,10 @@ const OrderReview = ({
                                                 Manufacturer:{" "}
                                                 {row.product.manufacturer}
                                             </span>{" "}
+                                            <span>
+                                                Item Code:{" "}
+                                                {row.product.item_code}
+                                            </span>{" "}
                                             {row?.product?.colors ? (
                                                 <span>
                                                     Color: {row.product.colors}

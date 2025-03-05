@@ -199,6 +199,10 @@ const OrderDetails = ({ orderId, style }) => {
                                             <span>
                                                 Manufacturer: {row.manufacturer}
                                             </span>{" "}
+                                            <span>
+                                                Item Code:{" "}
+                                                {row.product.item_code}
+                                            </span>{" "}
                                             {row?.product?.colors ? (
                                                 <span>
                                                     Color: {row.product.colors}

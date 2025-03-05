@@ -336,6 +336,10 @@ const OrderConfirmationMail = ({
                                                         Manufacturer:{" "}
                                                         {row.manufacturer}
                                                     </p>
+                                                    <span>
+                                                        Item Code:{" "}
+                                                        {row.product.item_code}
+                                                    </span>{" "}
                                                     {row?.product?.colors && (
                                                         <p
                                                             style={{
