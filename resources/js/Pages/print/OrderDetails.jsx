@@ -180,8 +180,9 @@ const OrderDetails = ({ orderId, style }) => {
                                 Number(row.embroidery_logo_cost) +
                                 Number(row.wayne_logo_price);
 
-                            const total_price_for_one =
-                                Number(row.price) * row.quantity;
+                            const total_price_for_one = Number(
+                                Number(row.price) + additionalCharges
+                            ).toFixed(2);
 
                             const totalAdditionalCharges =
                                 additionalCharges * row.quantity;

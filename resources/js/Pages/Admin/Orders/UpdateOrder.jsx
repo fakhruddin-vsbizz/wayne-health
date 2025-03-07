@@ -252,16 +252,24 @@ const UpdateOrder = () => {
                         columns={columns}
                     >
                         {orderItems.map((row) => {
-                            const additionalCharges = row?.embroidery_lines_cost
+                            const em_line_cost = row?.embroidery_lines_cost
                                 ? Number(row.embroidery_lines_cost)
-                                : 0 + row?.embroidery_logo_cost
+                                : 0;
+
+                            const em_logo_cost = row?.embroidery_logo_cost
                                 ? Number(row.embroidery_logo_cost)
-                                : 0 + row?.wayne_logo_price
+                                : 0;
+
+                            const wayne_logo_cost = row?.wayne_logo_price
                                 ? Number(row.wayne_logo_price)
                                 : 0;
 
-                            const price_per_unit =
-                                Number(row.price) + additionalCharges;
+                            const additionalCharges =
+                                em_line_cost + em_logo_cost + wayne_logo_cost;
+
+                            const price_per_unit = Number(
+                                Number(row.price) + additionalCharges
+                            ).toFixed(2);
 
                             return (
                                 <tr

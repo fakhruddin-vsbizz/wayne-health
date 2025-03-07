@@ -37,6 +37,8 @@ const PrintProduct = ({ product, style, inseam, fit, newLength }) => {
     });
 
     useEffect(() => {
+        console.log(product.product_sizes);
+        console.log(convertStringToObject(product.product_sizes[0].sizes));
         setSizesArray(convertStringToObject(product.product_sizes[0].sizes));
     }, [product]);
 

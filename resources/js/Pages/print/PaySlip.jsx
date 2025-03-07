@@ -203,7 +203,7 @@ const PaySlip = ({ orderId, style }) => {
                                     Number(row.wayne_logo_price);
 
                                 const total_price_for_one = Number(
-                                    Number(row.price) * row.quantity
+                                    Number(row.price) + additionalCharges
                                 ).toFixed(2);
 
                                 const totalAdditionalCharges =
