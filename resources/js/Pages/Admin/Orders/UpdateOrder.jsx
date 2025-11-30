@@ -319,7 +319,7 @@ const UpdateOrder = () => {
                 size="xl"
                 longScroll={true}
                 setOpen={setOpenSlip}
-                heading="Print Order Details"
+                heading="Print Packing List"
                 handleOkay={() => {}}
             >
                 <PaySlip

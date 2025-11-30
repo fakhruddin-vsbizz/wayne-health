@@ -4,7 +4,7 @@ import axios from "axios";
 import { useReactToPrint } from "react-to-print";
 import { primaryGreen } from "../../constantVriables";
 
-const columns = ["Product", "Quantity", "Price", "Total", "Additional Info"];
+const columns = ["Product", "Quantity", "Additional Info"];
 
 const PaySlip = ({ orderId, style }) => {
     const [orderItems, setOrderItems] = useState([]);
@@ -75,7 +75,8 @@ const PaySlip = ({ orderId, style }) => {
                 className="border-2 border-black p-4 text-sm"
                 ref={contentRef}
             >
-                <div className="border-b-2 p-2">
+                <div className="border-b-2 p-2 grid grid-cols-2">
+                <div>
                     <h1 className="text-xl text-black">
                         www.upgmarket.com Order
                     </h1>
@@ -83,6 +84,12 @@ const PaySlip = ({ orderId, style }) => {
                     <span className="text-sm font-bold ">
                         Order Number: {orderDetails.order_number}
                     </span>
+                </div>
+
+                <div className="flex items-center">
+                    <h3 className="text-black text-xl">PACKING LIST</h3>
+                </div>
+
                 </div>
                 <div className="p-2 mt-2 grid grid-cols-1 md:grid-cols-3 gap-6 border-b-2 p-2">
                     <div className="">
@@ -149,47 +156,47 @@ const PaySlip = ({ orderId, style }) => {
                     </h2>
                     <div>
                         <CustomTable
-                            footer={
-                                <>
-                                    <tr className="text-black">
-                                        <td
-                                            colSpan={4}
-                                            className="border-r-2 border-black border-b-2 text-end pr-2"
-                                        >
-                                            <span>Subtotal: </span>
-                                        </td>
-                                        <td className="border-r-2 border-black border-b-2 text-end pr-2">
-                                            <span>
-                                                ${Number(total).toFixed(2)}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr className="text-black">
-                                        <td
-                                            colSpan={4}
-                                            className="border-r-2 border-black border-b-2 text-end pr-2"
-                                        >
-                                            <span>Tax:</span>
-                                        </td>
-                                        <td className="border-r-2 border-black border-b-2 text-end pr-2">
-                                            <span>$0.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr className="text-black">
-                                        <td
-                                            colSpan={4}
-                                            className="border-r-2 border-black border-b-2 text-end pr-2"
-                                        >
-                                            <span>Order Total:</span>
-                                        </td>
-                                        <td className="border-r-2 border-black border-b-2 text-end pr-2">
-                                            <span>
-                                                ${Number(total).toFixed(2)}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </>
-                            }
+                            // footer={
+                            //     <>
+                            //         <tr className="text-black">
+                            //             <td
+                            //                 colSpan={4}
+                            //                 className="border-r-2 border-black border-b-2 text-end pr-2"
+                            //             >
+                            //                 <span>Subtotal: </span>
+                            //             </td>
+                            //             <td className="border-r-2 border-black border-b-2 text-end pr-2">
+                            //                 <span>
+                            //                     ${Number(total).toFixed(2)}
+                            //                 </span>
+                            //             </td>
+                            //         </tr>
+                            //         <tr className="text-black">
+                            //             <td
+                            //                 colSpan={4}
+                            //                 className="border-r-2 border-black border-b-2 text-end pr-2"
+                            //             >
+                            //                 <span>Tax:</span>
+                            //             </td>
+                            //             <td className="border-r-2 border-black border-b-2 text-end pr-2">
+                            //                 <span>$0.00</span>
+                            //             </td>
+                            //         </tr>
+                            //         <tr className="text-black">
+                            //             <td
+                            //                 colSpan={4}
+                            //                 className="border-r-2 border-black border-b-2 text-end pr-2"
+                            //             >
+                            //                 <span>Order Total:</span>
+                            //             </td>
+                            //             <td className="border-r-2 border-black border-b-2 text-end pr-2">
+                            //                 <span>
+                            //                     ${Number(total).toFixed(2)}
+                            //                 </span>
+                            //             </td>
+                            //         </tr>
+                            //     </>
+                            // }
                             noColorHeader={true}
                             border={true}
                             style={style}
@@ -262,7 +269,7 @@ const PaySlip = ({ orderId, style }) => {
                                                 {" "}
                                                 {row?.quantity}
                                             </td>
-                                            <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 border-black border-2">
+                                            {/* <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 border-black border-2">
                                                 <span className="flex flex-col gap-1 text-sm">
                                                     <span>${row.price}</span>
                                                     <span>
@@ -299,7 +306,7 @@ const PaySlip = ({ orderId, style }) => {
                                                         {row.total_price}
                                                     </span>
                                                 </span>
-                                            </td>
+                                            </td> */}
                                             {/* <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                                         <button
                                             onClick={() =>
@@ -333,11 +340,12 @@ const PaySlip = ({ orderId, style }) => {
                                                     {row.product
                                                         ?.wayne_logo_position ? (
                                                         <span>
-                                                            Wayne Health Logo $
-                                                            {
+                                                            Wayne Health Logo 
+                                                            {/* $ */}
+                                                            {/* {
                                                                 row.product
                                                                     .wayne_logo_price
-                                                            }
+                                                            } */}
                                                             : {""}
                                                             {row?.wayne_logo ===
                                                             "yes"
@@ -349,10 +357,11 @@ const PaySlip = ({ orderId, style }) => {
                                                         ?.co_brand_logo_position ? (
                                                         row?.co_brand_logo ? (
                                                             <span>
-                                                                Co-brand Logo $
+                                                                Co-brand Logo 
+                                                                {/* $
                                                                 {
                                                                     row.embroidery_logo_cost
-                                                                }
+                                                                } */}
                                                                 :{" "}
                                                                 {
                                                                     row?.co_brand_logo
@@ -364,11 +373,14 @@ const PaySlip = ({ orderId, style }) => {
                                                         ?.official_logo_position ? (
                                                         row?.official_logo ? (
                                                             <span>
-                                                                Official Logo $
+                                                                Official Logo 
+                                                                {/* $
                                                                 {
                                                                     row.embroidery_logo_cost
+                                                                } */}
+                                                                : {
+                                                                    row?.official_logo
                                                                 }
-                                                                :
                                                             </span>
                                                         ) : null
                                                     ) : null}
@@ -377,10 +389,11 @@ const PaySlip = ({ orderId, style }) => {
                                                     "line1" ? (
                                                         row?.line1 ? (
                                                             <span>
-                                                                Line 1 $
+                                                                Line 1 
+                                                                {/* $
                                                                 {
                                                                     row.embroidery_lines_cost
-                                                                }
+                                                                } */}
                                                                 : {row?.line1}
                                                             </span>
                                                         ) : null
@@ -391,10 +404,11 @@ const PaySlip = ({ orderId, style }) => {
                                                         <>
                                                             {row?.line1 ? (
                                                                 <span>
-                                                                    Line 1 $
+                                                                    Line 1 
+                                                                    {/* $
                                                                     {
                                                                         row.embroidery_lines_cost
-                                                                    }
+                                                                    } */}
                                                                     :{" "}
                                                                     {row?.line1}
                                                                 </span>
@@ -413,10 +427,11 @@ const PaySlip = ({ orderId, style }) => {
                                                         <>
                                                             {row?.line1 ? (
                                                                 <span>
-                                                                    Line 1 $
+                                                                    Line 1 
+                                                                    {/* $
                                                                     {
                                                                         row.embroidery_lines_cost
-                                                                    }
+                                                                    } */}
                                                                     :{" "}
                                                                     {row?.line1}
                                                                 </span>
