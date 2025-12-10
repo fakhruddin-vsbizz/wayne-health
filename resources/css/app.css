@@ -74,7 +74,9 @@
 @media print {
     table {
         width: 100%;
+        table-layout: fixed !important;
         border-collapse: collapse;
+        word-wrap: break-word !important;
     }
 
     th,
@@ -89,8 +91,14 @@
         page-break-after: auto;
     }
 
+    @page {
+    size: A4 portrait;
+    margin: 10mm;
+    }
+
     /* Or use break-after property */
     /* tr {
         break-after: page;
     } */
 }
+

@@ -349,7 +349,9 @@ const OrderDetails = ({ orderId, style }) => {
                                                         {
                                                             row.embroidery_logo_cost
                                                         }
-                                                        :
+                                                        : {
+                                                            row?.official_logo
+                                                        }
                                                     </span>
                                                 ) : null
                                             ) : null}
